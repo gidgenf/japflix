@@ -4,6 +4,17 @@
     height: auto;
 }
 
+.box-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+.card{
+    margin-bottom: 20px;
+}
+.leters{
+    color: white;
+}
 .img-cont {
     height: 200px;
     overflow: hidden;
