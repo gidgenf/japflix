@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     boton.addEventListener('click', () => {
         if(inputText.value){
         listafiltrado = listabusqueda.filter(buscarPorAtributos);
+        console.log(listabusqueda)
         showCards()
-        console.log(listafiltrado);
         }
     });
 
@@ -43,9 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
         return starsHTML;
     }
-    
+
     function showCards() {
         boxMovie.innerHTML = ``;
+        if(listafiltrado<9){
         listafiltrado.forEach(element => {
             boxMovie.innerHTML += `<li> 
                 <div class="card bg-dark">
@@ -71,5 +72,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div></li>`;
         });
+    }else{
+        for (let index = 0; index < 8 ; index++) {
+            const element = listafiltrado[index];
+            boxMovie.innerHTML += `<li> 
+            <div class="card bg-dark">
+                <div class="card-header box-title leters">
+                <h4> ${element.title} ${stars(element.vote_average)}</h4>
+                  <div class="dropdown">
+                    <button class="btn btn-dark left dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     more...
+                     </button>
+                  <ul class="bg-dark  dropdown-menu">
+                   <li><a class="dropdown-item leters">Popularidad: ${element.popularity}</a></li>
+                    <li><a class="dropdown-item leters" >Estreno: ${element.release_date}</a></li>
+                    <li><a class="dropdown-item leters" >Duracion: ${element.runtime}</a></li>
+                  </ul>
+            </div>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote leters mb-0">
+                        <p>${element.overview}</p>
+                        <footer class="blockquote-footer">${element.tagline} <cite title="Source Title">Source Title</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div></li>`;
+            
+        }
     }
+  }
 });
