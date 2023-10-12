@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let index = 0; index < 8 ; index++) {
             const element = listafiltrado[index];
             boxMovie.innerHTML += `<li> 
-            <div class="card bg-dark">
+            <div onclick="setid(${element.id})" class="card bg-dark">
                 <div class="card-header box-title leters">
                 <h4> ${element.title} ${stars(element.vote_average)}</h4>
                   <div class="dropdown">
@@ -108,5 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
         }
     }
+  }
+  function setid(id){
+    faund = listafiltrado.find((element) => element === id)
+    console.log(faund)
   }
 });
