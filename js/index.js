@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                    <li><a class="dropdown-item leters">Popularidad: ${element.popularity}</a></li>
                     <li><a class="dropdown-item leters" >Estreno: ${element.release_date}</a></li>
                     <li><a class="dropdown-item leters" >Duracion: ${element.runtime}</a></li>
+                    <li><a class="dropdown-item leters">presupuestos: ${element.budget}</a></li>
                   </ul>
             </div>
                 </div>
