@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const listabusqueda = [];
     let listafiltrado = [];
     let boton = document.getElementById('btnBuscar');
-    let inputText = document.getElementById('inputBuscar'); // Mover la declaración aquí
+    let inputText = document.getElementById('inputBuscar');
     let boxMovie = document.getElementById('lista')
 
     fetch(URL)
