@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const listabusqueda = [];
     let listafiltrado = [];
-    let boton = document.getElementById('btnBuscar');
-    let inputText = document.getElementById('inputBuscar');
-    let boxMovie = document.getElementById('lista')
+    let boton = document.getElementById('btnBuscar');  //se trae el boton de id btnBuscar
+    let inputText = document.getElementById('inputBuscar'); //se trae el elemento de inputBuscar
+    let boxMovie = document.getElementById('lista')  //se trae el contenedor de id lista
 
     fetch(URL)
         .then(response => response.json())
