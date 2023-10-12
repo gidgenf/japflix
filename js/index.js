@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         listafiltrado = listabusqueda.filter(buscarPorAtributos);
         console.log(listabusqueda)
         showCards()
+        }else{
+            boxMovie.innerHTML = ``
         }
     });
 
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         listafiltrado.forEach(element => {
             boxMovie.innerHTML += `<li> 
                 <div class="card bg-dark">
-                    <div class="card-header box-title leters">
+                    <div class="card-header leters">
                     <h4> ${element.title} ${stars(element.vote_average)}</h4>
                       <div class="dropdown">
                         <button class="btn btn-dark left dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <ul class="bg-dark  dropdown-menu">
                    <li><a class="dropdown-item leters">Popularidad: ${element.popularity}</a></li>
                     <li><a class="dropdown-item leters" >Estreno: ${element.release_date}</a></li>
-                    <li><a class="dropdown-item leters" >Duracion: ${element.runtime}</a></li>
+                    <li><a class="dropdown-item leters" >Duracion: ${element.runtime}h</a></li>
                     <li><a class="dropdown-item leters">presupuestos: ${element.budget}</a></li>
                   </ul>
             </div>
