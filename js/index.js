@@ -54,35 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (listafiltrado < 9) {
 
             listafiltrado.forEach(element => {  //por cada una de las peliculas filtradas crea una tarjeta
-                boxMovie.innerHTML += `<li> 
-                <div class="card bg-dark">
-                    <div class="card-header leters">
-                    <h4> ${element.title} ${stars(element.vote_average)}</h4>
-                      <div class="dropdown">
-                        <button class="btn btn-dark left dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         more...
-                         </button>
-                      <ul class="bg-dark  dropdown-menu">
-                       <li><a class="dropdown-item leters">Popularidad: ${element.popularity}</a></li>
-                        <li><a class="dropdown-item leters" >Estreno: ${element.release_date}</a></li>
-                        <li><a class="dropdown-item leters" >Duracion: ${element.runtime}</a></li>
-                      </ul>
-                </div>
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote leters mb-0">
-                            <p>${element.overview}</p>
-                            <footer class="blockquote-footer">${element.tagline} <cite title="Source Title">Source Title</cite></footer>
-                        </blockquote>
-                    </div>
-                </div>
-            </div></li>`;
-            });
-        } else {
-            for (let index = 0; index < 8; index++) {
-                const element = listafiltrado[index];
-                boxMovie.innerHTML += `
-                <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"> 
+                boxMovie.innerHTML += `<li data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop${element.id}" aria-controls="offcanvasTop"> 
                 <div onclick="setid(${element.id})" class="card bg-dark">
                     <div class="card-header box-title leters">
                         <h4>${element.title} ${stars(element.vote_average)}</h4>
@@ -94,16 +66,57 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             </li>
-            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop${element.id}" aria-labelledby="offcanvasTopLabel">
                 <div class="offcanvas-body">
                 <div>
                 <p>${element.overview}</p>
+                <ul class="list-group list-group-horizontal">
+                ${element.genres.map(genre => `<li class="list-group-item">${genre.name} </li>`).join('')}
                 </div>
-                    <div>
-                        <button class="btn btn-dark left dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                </div>
+                    <div class="text-end">
+                        <button class="btn bg-secondary text-light my-3 mx-3 left dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             more...
                         </button>
-                        <ul class="bg-dark dropdown-menu">
+                        <ul class="bg-primary dropdown-menu">
+                            <li><a class="dropdown-item leters">Popularidad: ${element.popularity}</a></li>
+                            <li><a class="dropdown-item leters">Estreno: ${element.release_date}</a></li>
+                            <li><a class="dropdown-item leters">Duración: ${element.runtime}h</a></li>
+                            <li><a class="dropdown-item leters">Presupuesto: ${element.budget}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>`;
+            });
+        } else {
+            for (let index = 0; index < 8; index++) {
+                const element = listafiltrado[index];
+                boxMovie.innerHTML += `
+                <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop${element.id}" aria-controls="offcanvasTop"> 
+                <div onclick="setid(${element.id})" class="card bg-dark">
+                    <div class="card-header box-title leters">
+                        <h4>${element.title} ${stars(element.vote_average)}</h4>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote leters mb-0">
+                            <footer class="blockquote-footer">${element.tagline}</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </li>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop${element.id}" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-body">
+                <div>
+                <p>${element.overview}</p>
+                <ul class="list-group list-group-horizontal">
+                ${element.genres.map(genre => `<li class="list-group-item">${genre.name} </li>`).join('')}
+                </div>
+                </div>
+                    <div class="text-end">
+                        <button class="btn bg-secondary text-light my-3 mx-3 left dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            more...
+                        </button>
+                        <ul class="bg-primary dropdown-menu">
                             <li><a class="dropdown-item leters">Popularidad: ${element.popularity}</a></li>
                             <li><a class="dropdown-item leters">Estreno: ${element.release_date}</a></li>
                             <li><a class="dropdown-item leters">Duración: ${element.runtime}h</a></li>
@@ -118,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setid(id) {
-        faund = listafiltrado.find((element) => element === id)
-        console.log(faund)
+        const found = listafiltrado.find(element => element.id === id);
+        return found.id;
     }
 });
